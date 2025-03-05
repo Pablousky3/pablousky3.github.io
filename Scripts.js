@@ -1,18 +1,19 @@
 $(document).ready(function() {
-    // Ejemplo: cambiar el color de fondo de la sección al hacer clic en un botón
-    $('.navbar a').on('click', function() {
-        $('.section').css('background-color', '#f9f9f9');
-    });
-});
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Ejemplo: cambiar el color de fondo de la sección al hacer clic en un botón
-    document.querySelectorAll('.navbar a').forEach(function(button) {
-        button.addEventListener('click', function() {
-            document.querySelectorAll('.section').forEach(function(section) {
-                section.style.backgroundColor = '#f9f9f9';
+    // Suavizar el desplazamiento al hacer clic en los enlaces de la barra de navegación
+    $('.navbar a').on('click', function(event) {
+        if (this.hash !== "") {
+            event.preventDefault();
+            var hash = this.hash;
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 800, function(){
+                window.location.hash = hash;
             });
-        });
+        }
+    });
+
+    // Detectar el toque en el título y aplicar la animación de parpadeo
+    $('.cover-page h1').on('click', function() {
+        $(this).toggleClass('blink');
     });
 });

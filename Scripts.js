@@ -11,9 +11,4 @@ $(document).ready(function() {
             });
         }
     });
-
-    // Detectar el toque en el título y aplicar la animación de parpadeo
-    $('.cover-page h1').on('click', function() {
-        $(this).toggleClass('blink');
-    });
 });

@@ -3,227 +3,366 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio Pablo Menéndez-Morán</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="Style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta name="description" content="Portfolio de Pablo Menéndez-Morán - Game Designer y Developer.">
+    <title>Pablo Menéndez-Morán 
+ Game Dev Portfolio</title>
+
+    <!-- Preconexiones para fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-    <!-- Barra de navegación -->
-    <div class="navbar">
-        <a href="#informacion">Informacion</a>
-        <a href="#proyectos">Proyectos</a>
-        <a href="#contactos">Contactos</a>
-    </div>
+    <!-- Navegación -->
+    <nav class="navbar" aria-label="Navegación principal">
+        <div class="nav-container">
+            <a href="#" class="logo" aria-label="Inicio">
+                <span class="logo-text">Mr</span><span class="logo-accent">Pablousky</span>
+            </a>
 
-    <div class="cover-page">
-        <h1>Portfolio Mr.Pablousky</h1>
-    </div>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link">Sobre Mí</a></li>
+                <li><a href="#skills" class="nav-link">Habilidades</a></li>
+                <li><a href="#experience" class="nav-link">Experiencia</a></li>
+                <li><a href="#awards" class="nav-link">Premios</a></li>
+                <li><a href="#games" class="nav-link">Juegos</a></li>
+            </ul>
 
-    
-    <!-- Sección de información  -->
-    <div id="informacion" class="section">
-        <h2>Sobre Mi</h2>
-        
-        <div class="descripcion-caja">
-            <p class="descripcion">Soy un alumno de UDIT de la carrera de Diseño y desarrollo de videojuegos. Actualmente, estoy cursando la mención de diseño en 3.ª de carrera. Me especializo en el diseño de narrativa, juego y niveles, pero también soy capaz de ajustarme a otros puestos y tareas relacionadas, tanto de diseño como de programación. También poseo conocimientos en pixel art y diseño web. Por último, tengo buenas habilidades de comunicación y trabajo en equipo, por lo que puedo coordinarme con las ramas de programación y arte de manera eficiente.</p>
+            <button class="menu-toggle" aria-label="Abrir menú móvil" aria-expanded="false">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+
+        <div class="hero-clouds" aria-hidden="true">
+            <img src="Imagenes/Nube_pixelart_2.png" alt="" class="cloud cloud-1" loading="eager">
+            <img src="Imagenes/Nube_pixelart_2.png" alt="" class="cloud cloud-2" loading="eager">
+            <img src="Imagenes/Nube_pixelart_2.png" alt="" class="cloud cloud-3" loading="eager">
         </div>
 
-        <div class="gifs-personajes">
-            <img src="Imagenes\Toxby.gif" alt="Personaje 1">
-            <img src="Imagenes\Craber.gif" alt="Personaje 2">
-            <img src="Imagenes\Slumy.gif" alt="Personaje 3">
-            <img src="Imagenes\Frocip.gif" alt="Personaje 4">
+        <div class="hero-content">
+            <h1 class="hero-title" id="breakable-title"></h1>
+            <p class="hero-subtitle">Game Designer / Developer</p>
+            <div class="hero-accent"></div>
         </div>
-        
-        <!-- Subsección de conocimientos -->
-        <div class="cuadrados-container">
-            <div class="cuadrado">
-                <div class="nombre">Programación</div>
-                <div class="texto"> 
-                    <ul>
-                        <li>C#</li>
-                        <li> Unity</li>
-                        <li> Unrreal</li>
-                    </ul>
+
+        <!-- SELECTOR DE PERSONAJES -->
+        <div id="character-selector">
+            <div class="character-option" data-char="1"></div>
+            <div class="character-option" data-char="2"></div>
+            <div class="character-option" data-char="3"></div>
+            <div class="character-option" data-char="4"></div>
+        </div>
+
+        <!-- CONTENEDOR DEL JUGADOR -->
+        <div id="player-container"></div>
+
+        <div class="ground-8bit" aria-hidden="true"></div>
+    </header>
+
+    <main>
+
+        <!-- Sobre Mí -->
+        <section id="about" class="section about-section reveal reveal-left">
+            <div class="section-container">
+                <h2 class="section-title"><span class="title-accent" aria-hidden="true">→</span> SOBRE MÍ</h2>
+
+                <div class="about-content">
+
+                    <article class="about-text">
+                        <p>Soy un apasionado desarrollador y diseñador de videojuegos con experiencia en crear experiencias inmersivas y emocionantes. Mi trayectoria combina habilidades técnicas sólidas con un ojo artístico para el diseño visual.</p>
+                        <p>Cada proyecto que realizo es una oportunidad para innovar, experimentar con nuevas tecnologías y crear algo que realmente impacte a los jugadores.</p>
+                    </article>
+
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number">4+</span>
+                            <span class="stat-label">Años Experiencia</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">6+</span>
+                            <span class="stat-label">Proyectos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">8</span>
+                            <span class="stat-label">Premios</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div class="cuadrado">
-                <div class="nombre">Diseño</div>
-                <div class="texto">
-                    <ul>
-                    <li>Diseño de narrativa</li>
-                    <li>Diseño de niveles</li>
-                    <li>Diseño de gameplay</li>
-                    </ul>
+        </section>
+
+        <!-- Habilidades -->
+        <section id="skills" class="section skills-section reveal reveal-scale">
+            <div class="section-container">
+                <h2 class="section-title"><span class="title-accent" aria-hidden="true">→</span> HABILIDADES</h2>
+
+                <div class="skills-grid">
+                    <article class="skill-column">
+                        <h3 class="skill-title">ARTE</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">🎨</span><span>Concept Art</span></li>
+                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">🖼️</span><span>Ilustración Digital</span></li>
+                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">🌈</span><span>Color & Composición</span></li>
+                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">✨</span><span>Efectos Visuales</span></li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-column">
+                        <h3 class="skill-title">DISEÑO</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">🎮</span><span>Game Design</span></li>
+                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">🧩</span><span>Mecánicas de Juego</span></li>
+                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">📐</span><span>UI/UX Design</span></li>
+                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">🎭</span><span>Narrativa</span></li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-column">
+                        <h3 class="skill-title">PROGRAMACIÓN</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">⚙️</span><span>C# & Unity</span></li>
+                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">🚀</span><span>Unreal Engine</span></li>
+                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">🔧</span><span>Scripting</span></li>
+                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">🌐</span><span>Web Development</span></li>
+                        </ul>
+                    </article>
                 </div>
             </div>
-            <div class="cuadrado">
-                <div class="nombre">Diseño Web</div>
-                <div class="texto">
-                    <ul>
-                    <li>Html</li>
-                    <li>Css</li>
-                    <li>Js</li>
-                    </ul>
+        </section>
+
+        <!-- Experiencia -->
+        <section id="experience" class="section experience-section reveal reveal-right">
+            <div class="section-container">
+                <h2 class="section-title"><span class="title-accent" aria-hidden="true">→</span> EXPERIENCIA LABORAL</h2>
+
+                <div class="timeline">
+
+                    <div class="timeline-item" data-experience="1" tabindex="0">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Senior Game Developer</h3>
+                            <p class="timeline-company">Tech Games Studio</p>
+                            <p class="timeline-period">2022 - Presente</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-experience="2" tabindex="0">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Game Programmer</h3>
+                            <p class="timeline-company">Indie Creative Labs</p>
+                            <p class="timeline-period">2020 - 2022</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-experience="3" tabindex="0">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Junior Developer</h3>
+                            <p class="timeline-company">Digital Games Co.</p>
+                            <p class="timeline-period">2019 - 2020</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-experience="4" tabindex="0">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Freelance Developer</h3>
+                            <p class="timeline-company">Proyectos Independientes</p>
+                            <p class="timeline-period">2018 - 2019</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Premios -->
+        <section id="awards" class="section awards-section reveal reveal-rotate">
+
+            <div class="section-container">
+                <h2 class="section-title"><span class="title-accent" aria-hidden="true">→</span> PREMIOS & RECONOCIMIENTOS</h2>
+
+                <div class="carousel-container">
+                    <button class="carousel-btn carousel-btn-prev" aria-label="Premio anterior">❮</button>
+
+                    <div class="carousel-wrapper">
+                        <div class="carousel-track">
+
+                            <div class="award-item" data-award="1">
+                                <div class="award-image"><img src="Imagenes/premios/Diploma_ganador_Ferrovial.jpg" alt="Best Game Design"></div>
+                                <h3 class="award-title">Best Game Design</h3>
+                            </div>
+
+                            <div class="award-item" data-award="2">
+                                <div class="award-image"><img src="Imagenes/premios/Hack_for_good.jpeg" alt="Innovation Award"></div>
+                                <h3 class="award-title">Innovation Award</h3>
+                            </div>
+
+                            <div class="award-item" data-award="3">
+                                <div class="award-image"><img src="Imagenes/premios/HackSTEM_Certificate_First_Place.png" alt="Best Art Direction"></div>
+                                <h3 class="award-title">Best Art Direction</h3>
+                            </div>
+
+                            <div class="award-item" data-award="4">
+                                <div class="award-image"><img src="Imagenes/premios/Ideathon-Amadeus-premios-82-scaled-1.jpg" alt="Player's Choice"></div>
+                                <h3 class="award-title">Player's Choice</h3>
+                            </div>
+
+                            <div class="award-item" data-award="5">
+                                <div class="award-image"><img src="Imagenes/premios/Oppo_imagine_if.jpeg" alt="Best Innovation"></div>
+                                <h3 class="award-title">Best Innovation</h3>
+                            </div>
+
+                            <div class="award-item" data-award="6">
+                                <div class="award-image"><img src="Imagenes/premios/Madrid_game_jam.jpg" alt="Game Jam Winner"></div>
+                                <h3 class="award-title">Game Jam Winner</h3>
+                            </div>
+
+                            <div class="award-item" data-award="7">
+                                <div class="award-image"><img src="Imagenes/premios/Indesiahack.png" alt="Photo Award"></div>
+                                <h3 class="award-title">Photo</h3>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button class="carousel-btn carousel-btn-next" aria-label="Siguiente premio">❯</button>
+                </div>
+
+                <div class="carousel-indicators" id="carouselIndicators"></div>
+
+            </div>
+        </section>
+
+        <!-- Juegos -->
+        <section id="games" class="section games-section reveal reveal-up">
+            <div class="section-container">
+
+                <h2 class="section-title"><span class="title-accent" aria-hidden="true">→</span> MIS JUEGOS</h2>
+
+                <div class="shelf-container">
+                    <div class="game-shelf">
+
+                        <article class="game-item" data-game="1" tabindex="0">
+                            <div class="game-cover"><img class="game-cover-image" src="https://via.placeholder.com/400x300/FF6B6B/FFFFFF?text=CYBER+QUEST" alt="Cyber Quest"></div>
+                            <div class="game-label">Cyber Quest</div>
+                        </article>
+
+                        <article class="game-item" data-game="2" tabindex="0">
+                            <div class="game-cover"><img class="game-cover-image" src="https://via.placeholder.com/400x300/4ECDC4/FFFFFF?text=PIXEL+WARS" alt="Pixel Wars"></div>
+                            <div class="game-label">Pixel Wars</div>
+                        </article>
+
+                        <article class="game-item" data-game="3" tabindex="0">
+                            <div class="game-cover"><img class="game-cover-image" src="https://via.placeholder.com/400x300/FFE66D/FFFFFF?text=NEON+RUSH" alt="Neon Rush"></div>
+                            <div class="game-label">Neon Rush</div>
+                        </article>
+
+                        <article class="game-item" data-game="4" tabindex="0">
+                            <div class="game-cover"><img class="game-cover-image" src="https://via.placeholder.com/400x300/95E1D3/FFFFFF?text=VOID+ECHO" alt="Void Echo"></div>
+                            <div class="game-label">Void Echo</div>
+                        </article>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Contenedor de Modales -->
+    <aside id="modals-container">
+
+        <!-- Modal Experiencia -->
+        <div id="experienceModal" class="modal" aria-hidden="true" role="dialog">
+            <div class="modal-content">
+                <button class="modal-close" id="closeExperienceModal" aria-label="Cerrar modal">×</button>
+                <div class="modal-body">
+                    <div class="modal-experience-image"><img id="modalExpImage" src="" alt="Imagen"></div>
+                    <div class="modal-experience-info">
+                        <h2 id="modalExpTitle"></h2>
+                        <p class="modal-company" id="modalExpCompany"></p>
+                        <p class="modal-period" id="modalExpPeriod"></p>
+
+                        <div class="modal-description">
+                            <h3>Descripción</h3>
+                            <p id="modalExpDescription"></p>
+                        </div>
+
+                        <div class="modal-responsibilities">
+                            <h3>Responsabilidades</h3>
+                            <ul id="modalExpResponsibilities"></ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Subsección de herramientas -->
-        <h3>Herramientas</h3>
-        <div class="Herramientas">
-            <div class="tool">
-                <img src="Imagenes/Adobe_Illustrator_CC_icon.svg.png" alt="Adobe Illustrator" class="tool-img">
-                <div class="tool-text">Adobe Illustrator</div>
-            </div>
-            <div class="tool">
-                <img src="Imagenes/Adobe_Photoshop_CC_icon.svg.png" alt="Adobe Photoshop" class="tool-img">
-                <div class="tool-text">Adobe Photoshop</div>
-            </div>
-            <div class="tool">
-                <img src="Imagenes/construct-logo-DF244B4ECA-seeklogo.com.png" alt="Construct" class="tool-img">
-                <div class="tool-text">Construct</div>
-            </div>
-            <div class="tool">
-                <img src="Imagenes/Figma-logo.svg.png" alt="Figma" class="tool-img">
-                <div class="tool-text">Figma</div>
-            </div>
-            <div class="tool">
-                <img src="Imagenes/Microsoft_Excel_2013-2019_logo.svg.png" alt="Microsoft Excel" class="tool-img">
-                <div class="tool-text">Microsoft Excel</div>
-            </div>
-            <div class="tool">
-                <img src="Imagenes/Notion-logo.svg.png" alt="Notion" class="tool-img">
-                <div class="tool-text">Notion</div>
-            </div>
-            <div class="tool">
-                <img src="Imagenes/Miro.png" alt="Miro" class="tool-img">
-                <div class="tool-text">Miro</div>
-            </div>
-            <div class="tool">
-                <img src="Imagenes/Logo_Aseprite.svg.png" alt="Aseprite" class="tool-img">
-                <div class="tool-text">Aseprite</div>
-            </div>
-            <div class="tool">
-                <img src="Imagenes/unity-logo.png" alt="Unity" class="tool-img">
-                <div class="tool-text">Unity</div>
-            </div>
-            <div class="tool">
-                <img src="Imagenes/Unreal.png" alt="Unreal Engine" class="tool-img">
-                <div class="tool-text">Unreal Engine</div>
+
+        <!-- Modal Premios -->
+        <div id="awardModal" class="modal" aria-hidden="true" role="dialog">
+            <div class="modal-content">
+                <button class="modal-close" id="closeAwardModal" aria-label="Cerrar modal">×</button>
+                <div class="modal-body">
+                    <div class="modal-award-image"><img id="modalAwardImage" src="" alt="Premio"></div>
+
+                    <div class="modal-award-info">
+                        <h2 id="modalAwardTitle"></h2>
+                        <p id="modalAwardDescription"></p>
+
+                        <div class="modal-award-details">
+                            <div class="detail"><span class="detail-label">Evento:</span><span id="modalAwardEvent"></span></div>
+                            <div class="detail"><span class="detail-label">Año:</span><span id="modalAwardYear"></span></div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
-       
-       
-        <!-- Subsección de premios -->
-        <h3>Premios</h3>
-        <div class="Premios">
 
-            <div class="Premio">
-                <a href="https://udit.es/actualidad/amadeus-celebra-con-los-alumnos-de-esne-una-maraton-creativa-en-torno-al-metaverso/" target="_blank">
-                    <img src="Imagenes\Ideathon-Amadeus-premios-82-scaled-1.jpg" alt="Ideathon Amadeus" class="Premios-img">
-                </a>
-                <div class="Premios-text">3º Premio Ideathon Amadeus</div>
-            </div>
+        <!-- Modal Juegos -->
+        <div id="gameModal" class="modal" aria-hidden="true" role="dialog">
+            <div class="modal-content">
+                <button class="modal-close" id="closeModal" aria-label="Cerrar modal">×</button>
+                <div class="modal-body">
 
-            <div class="Premio">
-                <a href="https://udit.es/actualidad/los-alumnos-del-grado-en-diseno-y-desarrollo-de-videojuegos-de-udit-ganadores-de-hackstem/" target="_blank">
-                    <img src="Imagenes\HackSTEM_Certificate_First Place_Pablo Menéndez-Morán.png" alt="HackSTEM_Certificate_First" class="Premios-img">
-                </a>
-                <div class="Premios-text">1º Premio Hackstem23</div>
-            </div>
+                    <div class="modal-game-info">
+                        <h2 id="modalGameTitle"></h2>
+                        <p id="modalGameDescription"></p>
 
-            <div class="Premio">
-                <a href="https://udit.es/actualidad/tres-estudiantes-del-grado-en-diseno-y-desarrollo-de-videojuegos-ganan-el-tercer-puesto-en-la-hackaton-hackforgood-de-telefonica/" target="_blank">
-                    <img src="Imagenes\Hack for good.jpeg" alt="Hack for good" class="Premios-img">
-                </a>
-                <div class="Premios-text">3ºPremio Hack for Good 2024</div>
-            </div>
+                        <div class="modal-game-details">
+                            <div class="detail"><span class="detail-label">Plataforma:</span><span id="modalGamePlatform"></span></div>
+                            <div class="detail"><span class="detail-label">Año:</span><span id="modalGameYear"></span></div>
+                            <div class="detail"><span class="detail-label">Motor:</span><span id="modalGameEngine"></span></div>
+                        </div>
 
-            <div class="Premio">
-                <a href="https://udit.es/actualidad/siete-estudiantes-de-udit-ganadores-en-el-concurso-de-fotografia-oppo-imagine-if-photography-award-udit-edition/" target="_blank">
-                    <img src="Imagenes\Oppo imagine if.jpeg" alt="Oppo" class="Premios-img">
-                </a>
-                <div class="Premios-text">3º Premio Oppo imagine if junto con UDIT</div>
-            </div>
+                        <div class="modal-links">
+                            <a id="modalGameLink" href="#" target="_blank" class="btn-link">Ver Juego</a>
+                            <a id="modalGameGithub" href="#" target="_blank" class="btn-link">GitHub</a>
+                        </div>
 
-            <div class="Premio">
-                <a href="https://udit.es/actualidad/siete-estudiantes-de-videojuegos-full-stack-y-del-master-en-ia-ganadores-de-la-primera-fase-del-reto-indesiahack/" target="_blank">
-                    <img src="Imagenes\Diploma ganador Ferrovial.jpg" alt="Ferrovial" class="Premios-img">
-                </a>
-                <div class="Premios-text">1º Premio reto ferrovial de Indesiahack</div>
-            </div>
-
-            <div class="Premio">
-                <a href="https://udit.es/actualidad/cuatro-estudiantes-de-udit-triunfan-en-el-indesiahack/" target="_blank">
-                    <img src="Imagenes\Indesiahack.png" alt="Indesiahack" class="Premios-img">
-                </a>
-                <div class="Premios-text">1º Premio Indesiahack 2024</div>
-            </div>
-
-            <div class="Premio">
-                <a href="https://dev.org.es/es/noticias-a-eventos/eventos-dev/item/401-game-jam-madrid-crea-6%C2%AA-edici%C3%B3n" target="_blank">
-                    <img src="Imagenes\Madrid game jam.jpeg" alt="Madrid game jam" class="Premios-img">
-                </a>
-                <div class="Premios-text">Finalistas Madrid game Jam VI Edición</div>
-            </div>
-
-        </div>
-    </div>
-    
-    
-    <!-- Sección de Proyectos -->
-    <div id="proyectos" class="section">
-        <h2>Proyectos</h2>
-        <div class="estanteria">
-            <div class="grid-container">
-                <div class="grid-item">
-                    <a href="https://tabasco-games.itch.io/alux" target="_blank"><img src="Imagenes/Alux.png" alt="Proyecto 1" style="width:100%">
-                    <p>Alux</p></a>
+                    </div>
                 </div>
-                <div class="grid-item">
-                    <a href="https://lemon-games-23.itch.io/slap-league" target="_blank"><img src="Imagenes/Slap.png" alt="Proyecto 2" style="width:100%">
-                    <p>Slap League</a></p></a>
-                </div>
-                <div class="grid-item">
-                    <a href="https://bloodmoons-studios.itch.io/hotel-alighieri" target="_blank"><img src="Imagenes/Hotel.png" alt="Proyecto 3" style="width:100%">
-                    <p>Hotel Alighieri</p></a>
-                </div>
-                <div class="grid-item">
-                    <a href="https://kaalabaloo.itch.io/5-minutos-en-madrid" target="_blank"><img src="Imagenes\5 Minutos en Madrid.png" alt="Proyecto 4" style="width:100%">
-                    <p>5 Minutos en Madrid</p></a>
-                </div>
-                
-                <!-- Añadir más proyectos aquí -->
             </div>
         </div>
-    </div>
-    
-    
-   
-    <!-- Sección de contactos -->
-    <div id="contactos" class="section contactos-section">
-        <h2>Contacto</h2>
-        <div class="contact-links">
-            <p>
-                <a href="mailto:p.menendezmoran@gmail.com" target="_blank">
-                    <img src="Imagenes\Gmail.png" alt="Correo" class="contact-icon"> p.menendezmoran@gmail.com
-                </a>
-            </p>
-            <p>
-                <a href="https://mrpablosky.itch.io/" target="_blank">
-                <img src="Imagenes\itch.io-logo.png" alt="Itch.io" class="contact-icon"> Mi Itch.io
-                </a>
-            </p>
-        </div>   
-    </div>
-</div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="Scripts.js"></script>
-    
+    </aside>
+
+    <footer class="footer">
+        <p>© 2024 Pablo Menéndez-Morán. Diseñado y desarrollado con ❤️</p>
+    </footer>
+
+    <script src="script.js"></script>
+
 </body>
 </html>

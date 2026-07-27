@@ -27,8 +27,8 @@ const PORTFOLIO_DATA = {
   }
 };
 
-// --- Indicador personalizado para "fantasma" (inactivo)
-const GHOST_IMAGE_URL = 'Imagenes/pildora.png'; // <- tu imagen
+// --- Indicador personalizado para "Pildora" (inactivo)
+const GHOST_IMAGE_URL = 'Imagenes/pildora.png'; 
 
 // ============ 2. CONTROLADOR DE NAVEGACIÓN ============
 const UIController = (() => {
@@ -419,35 +419,40 @@ const GamesController = (() => {
   return { init };
 })();
 
-// ============ 8. CONTROLADOR DEL PERSONAJE INTERACTIVO (V5 - Con Selector, Destrucción y Reparación) ============
+// ============ 8. CONTROLADOR DEL PERSONAJE INTERACTIVO (V6 - Con trampolín y título destructible) ============
 const CharacterController = (() => {
   const playerContainer = document.getElementById('player-container');
   const characterSelector = document.getElementById('character-selector');
   const breakableTitle = document.getElementById('breakable-title');
+
+
+
   const originalTitleText = "Pablo Menéndez-Morán"; // El texto original del título
 
-  let char = null; // El personaje seleccionado
-  let charType = null; // Tipo de personaje (para cargar GIFs)
+  let char = null;      // El personaje seleccionado
+  let charType = null;  // Tipo de personaje (para cargar GIFs)
 
   // --- Configuración Física ---
   let posX = 100;
-  let posY = 0;           
-  let velocityY = 0;      
-  const speed = 8;        
-  const gravity = 0.8;    
-  const jumpPower = -16;  
-  
+  let posY = 0;
+  let velocityY = 0;
+  const speed = 8;
+  const gravity = 0.8;
+  const jumpPower = -16;
+
   // --- Estados de Animación ---
   let isJumping = false;
   let isAttacking = false;
-  let currentDirection = 1; 
+  let currentDirection = 1;
   let lastAttackTime = 0;
-  const attackDuration = 400; // Ajusta según la duración de tu GIF de ataque
-  
+  const attackDuration = 400; // ms
+
+
+
   // --- Registro de Teclas ---
   const keys = { right: false, left: false, up: false, attack: false };
 
-  // --- Lógica de Título --- 
+  // --- Lógica de Título ---
   let titleBroken = false;
   let repairTimeout = null;
   const repairDelay = 5000; // 5 segundos para reparar el título
@@ -469,58 +474,65 @@ const CharacterController = (() => {
     window.addEventListener('keydown', (e) => {
       if (!char) return; // No procesar teclas si no hay personaje seleccionado
       const key = e.key.toLowerCase();
+
       if (key === 'arrowright' || key === 'd') keys.right = true;
-      if (key === 'arrowleft' || key === 'a') keys.left = true;
+      if (key === 'arrowleft'  || key === 'a') keys.left = true;
       if (key === ' ' || key === 'arrowup' || key === 'w') keys.up = true;
       if (key === 'f' || key === 'enter') keys.attack = true;
     });
 
     window.addEventListener('keyup', (e) => {
-      if (!char) return; // No procesar teclas si no hay personaje seleccionado
+      if (!char) return;
       const key = e.key.toLowerCase();
+
       if (key === 'arrowright' || key === 'd') keys.right = false;
-      if (key === 'arrowleft' || key === 'a') keys.left = false;
+      if (key === 'arrowleft'  || key === 'a') keys.left = false;
       if (key === ' ' || key === 'arrowup' || key === 'w') keys.up = false;
       if (key === 'f' || key === 'enter') keys.attack = false;
     });
-
-    // Iniciar el bucle de juego solo después de seleccionar personaje
-    // gameLoop(); // Esto se llamará después de la selección
   };
 
   const selectCharacter = (type) => {
     charType = type;
 
-    // Ocultar el selector
+    // Ocultar el selector de personajes
     if (characterSelector) {
-        characterSelector.classList.add('hidden');
+      characterSelector.style.opacity = '0';
+      characterSelector.style.pointerEvents = 'none';
+      characterSelector.style.transition = 'opacity 0.3s ease-out';
     }
 
-    // Crear el personaje principal
+    // Crear el personaje
     char = document.createElement('div');
     char.id = 'player-character';
-    char.classList.add('character-idle');
-    char.classList.add('active'); // SIN ESTO EL PERSONAJE ES INVISIBLE
+    char.classList.add('character-idle', 'active');
+    char.style.left = '100px';
+    char.style.bottom = 'calc(12vh + 0px)';
     char.style.backgroundImage = `url('Imagenes/char${charType}_idle.gif')`;
+    char.style.opacity = '1';
+
     playerContainer.appendChild(char);
 
-    // Iniciar el bucle de juego
-    gameLoop();
+    // Empezar el bucle de juego
+    requestAnimationFrame(gameLoop);
   };
 
+  // --------- BUCLE PRINCIPAL DEL JUEGO ---------
   const gameLoop = () => {
     if (!char) return; // Asegurarse de que el personaje exista
 
     // 1. ACTUALIZAR ESTADOS FÍSICOS
     let isMovingHorizontally = false;
+
+    // Movimiento horizontal
     if (keys.right) {
       posX += speed;
-      currentDirection = 1; // Mirar a la derecha
+      currentDirection = 1;
       isMovingHorizontally = true;
     }
     if (keys.left) {
       posX -= speed;
-      currentDirection = -1; // Mirar a la izquierda
+      currentDirection = -1;
       isMovingHorizontally = true;
     }
 
@@ -530,31 +542,39 @@ const CharacterController = (() => {
       isJumping = true;
     }
 
-    velocityY += gravity;
-    posY -= velocityY;
+    velocityY += gravity;  // gravedad tira hacia abajo (aumenta el valor positivo)
+    posY -= velocityY;     // negativo sube, positivo baja
 
+    // Colisión con el "suelo" base
     if (posY <= 0) {
       posY = 0;
       velocityY = 0;
       isJumping = false;
     }
 
-    // Lógica de Ataque
+
+
+    // 3. LÓGICA DE ATAQUE
     if (keys.attack && !isAttacking && Date.now() - lastAttackTime > attackDuration + 100) {
       isAttacking = true;
       lastAttackTime = Date.now();
-      
+
+      // Asegurar opacidad 1 durante el ataque
+      char.style.opacity = '1';
+
       // Reiniciar el GIF de ataque
       char.style.backgroundImage = `url('Imagenes/char${charType}_attack.gif?t=${Date.now()}')`;
       char.classList.add('character-attacking');
-      
+
       createHitEffect();
       checkTitleCollision(); // Comprobar si golpea el título
 
       setTimeout(() => {
         isAttacking = false;
         char.classList.remove('character-attacking');
-        // Restaurar el GIF de idle/walking/jumping después del ataque
+        char.style.opacity = '1';
+
+        // Restaurar el GIF correcto después del ataque
         if (isJumping) {
           char.style.backgroundImage = `url('Imagenes/char${charType}_jump.gif')`;
         } else if (isMovingHorizontally) {
@@ -565,30 +585,40 @@ const CharacterController = (() => {
       }, attackDuration);
     }
 
-    // 2. ACTUALIZAR CLASES DE ANIMACIÓN (si no está atacando)
+    // 4. ACTUALIZAR CLASES DE ANIMACIÓN (si no está atacando)
     if (!isAttacking) {
+      char.classList.remove('character-jumping', 'character-walking', 'character-idle');
+
       if (isJumping) {
-        char.className = 'character-jumping'; // Siempre usa el GIF de salto en el aire
+        char.classList.add('character-jumping');
         char.style.backgroundImage = `url('Imagenes/char${charType}_jump.gif')`;
       } else if (isMovingHorizontally) {
-        char.className = 'character-walking';
+        char.classList.add('character-walking');
         char.style.backgroundImage = `url('Imagenes/char${charType}_walk.gif')`;
       } else {
-        char.className = 'character-idle';
+        char.classList.add('character-idle');
         char.style.backgroundImage = `url('Imagenes/char${charType}_idle.gif')`;
+      }
+
+      // Asegurar visibilidad
+      if (!char.classList.contains('active')) {
+        char.classList.add('active');
       }
     }
 
-    // 3. APLICAR POSICIÓN
-    posX = Math.max(0, Math.min(window.innerWidth - char.offsetWidth, posX)); // Límites de pantalla
+    // 5. APLICAR POSICIÓN EN PANTALLA
+    posX = Math.max(0, Math.min(window.innerWidth - char.offsetWidth, posX)); // límites pantalla
     char.style.left = posX + 'px';
     char.style.bottom = `calc(12vh + ${posY}px)`;
     char.style.transform = `scaleX(${currentDirection})`;
 
+    // 6. SIGUIENTE FRAME
     requestAnimationFrame(gameLoop);
   };
 
-  // Efecto visual de golpe al atacar
+
+
+  // --------- EFECTO VISUAL DEL GOLPE ---------
   const createHitEffect = () => {
     const effect = document.createElement('div');
     effect.className = 'attack-effect';
@@ -598,19 +628,27 @@ const CharacterController = (() => {
     setTimeout(() => effect.remove(), 200);
   };
 
-  // Lógica de colisión y destrucción del título
+  // --------- COLISIÓN CON EL TÍTULO (ROMPERLO) ---------
   const checkTitleCollision = () => {
-    if (!breakableTitle || titleBroken) return;
+    if (!breakableTitle || titleBroken || !char) return;
 
     const charRect = char.getBoundingClientRect();
     const titleRect = breakableTitle.getBoundingClientRect();
 
-    // Simple detección de colisión (ajusta según el tamaño de tu personaje y título)
-    const collisionThreshold = 50; // Distancia para considerar colisión
-    const distanceX = Math.abs((charRect.left + charRect.right) / 2 - (titleRect.left + titleRect.right) / 2);
-    const distanceY = Math.abs((charRect.top + charRect.bottom) / 2 - (titleRect.top + titleRect.bottom) / 2);
+    const collisionThreshold = 50;
+    const distanceX = Math.abs(
+      (charRect.left + charRect.right) / 2 -
+      (titleRect.left + titleRect.right) / 2
+    );
+    const distanceY = Math.abs(
+      (charRect.top + charRect.bottom) / 2 -
+      (titleRect.top + titleRect.bottom) / 2
+    );
 
-    if (distanceX < titleRect.width / 2 + collisionThreshold && distanceY < titleRect.height / 2 + collisionThreshold) {
+    if (
+      distanceX < titleRect.width / 2 + collisionThreshold &&
+      distanceY < titleRect.height / 2 + collisionThreshold
+    ) {
       // ¡Colisión detectada! Romper el título
       breakableTitle.classList.add('broken');
       breakableTitle.classList.remove('repaired');
@@ -631,10 +669,14 @@ const CharacterController = (() => {
     breakableTitle.classList.remove('broken');
     breakableTitle.classList.add('repaired');
     titleBroken = false;
-    // Eliminar la clase 'repaired' después de la animación para poder volver a romperlo
-    breakableTitle.addEventListener('animationend', () => {
-      breakableTitle.classList.remove('repaired');
-    }, { once: true });
+
+    breakableTitle.addEventListener(
+      'animationend',
+      () => {
+        breakableTitle.classList.remove('repaired');
+      },
+      { once: true }
+    );
   };
 
   return { init };

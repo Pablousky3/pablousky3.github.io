@@ -1,368 +1,307 @@
-<!DOCTYPE html>
+<!doctype html>
+<!-- Documento principal de la versión independiente: solo necesita este HTML, styles.css y script.js. -->
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio de Pablo Menéndez-Morán - Game Designer y Developer.">
-    <title>Pablo Menéndez-Morán 
- Game Dev Portfolio</title>
+  <head>
+    <!-- Metadatos básicos, descripción para buscadores y hoja de estilos principal. -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio de Pablo Menéndez-Morán, diseñador y desarrollador de videojuegos."
+    />
+    <title>Pablo · Game Design / Dev</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css?v=18" />
+  </head>
+  <body>
+    <!-- Contenedor general que mantiene el fondo y evita desbordamientos visuales. -->
+    <div class="site-shell">
+      <!-- Barra que indica visualmente el avance de lectura de la página. -->
+      <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+      <!-- Navegación principal: permanece visible durante el scroll y se adapta a móvil. -->
+      <header class="topbar">
+        <!-- Marca: cambia aquí el nombre corto y la etiqueta profesional del encabezado. -->
+        <a class="brand" href="#top" aria-label="Ir al inicio">
+          <!-- Cambia solo esta ruta por tu GIF. El contenedor funciona como máscara circular. -->
+          <span class="brand-character-mask">
+            <img class="brand-character" 
+            src="Imagenes/personaje-estatico.png" 
+            data-gif="Imagenes/personaje.gif" alt="Personaje de Pablo"/>
+          </span>
 
-    <!-- Preconexiones para fuentes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+          <span><b>Pablo</b><small>GAME DESIGN / DEV</small></span>
+        </a>
 
-    <!-- Estilos -->
-    <link rel="stylesheet" href="styles.css">
-</head>
+        <!-- Botón que abre y cierra la navegación en pantallas pequeñas. -->
+        <button
+          class="mobile-toggle"
+          aria-expanded="false"
+          aria-label="Abrir navegación"
+        >
+          ☰
+        </button>
 
-<body>
-
-    <!-- Navegación -->
-    <nav class="navbar" aria-label="Navegación principal">
-        <div class="nav-container">
-            <a href="#" class="logo" aria-label="Inicio">
-                <span class="logo-text">Mr</span><span class="logo-accent">Pablousky</span>
-            </a>
-
-            <ul class="nav-links">
-                <li><a href="#about" class="nav-link">Sobre Mí</a></li>
-                <li><a href="#skills" class="nav-link">Habilidades</a></li>
-                <li><a href="#experience" class="nav-link">Experiencia</a></li>
-                <li><a href="#awards" class="nav-link">Premios</a></li>
-                <li><a href="#games" class="nav-link">Juegos</a></li>
-            </ul>
-
-            <button class="menu-toggle" aria-label="Abrir menú móvil" aria-expanded="false">☰</button>
+        <!-- Selector bilingüe: script.js actualiza todo el contenido al pulsar ES o EN. -->
+        <div class="language-switcher" aria-label="Cambiar idioma">
+          <button class="is-active" data-language="es">ES</button><span>/</span
+          ><button data-language="en">EN</button>
         </div>
-    </nav>
+        <!-- Enlaces de navegación: apuntan a las secciones mediante anclas y scroll suave. -->
+        <nav class="main-nav" aria-label="Navegación principal">
+          <a href="#about">Sobre mí</a>
+          <a href="#skills">Habilidades</a>
+          <a href="#projects">Proyectos</a>
+          <a href="#documents">Investigación</a>
+          <a href="#awards">Reconocimientos</a>
+          <a href="#experience">Experiencia</a>
+          <a class="nav-cta" href="#contact">Contacto ↗</a>
+        </nav>
+      </header>
 
-    <!-- Hero Section -->
-    <header class="hero">
-
-        <div class="hero-clouds" aria-hidden="true">
-            <img src="Imagenes/Nube_pixelart_2.png" alt="" class="cloud cloud-1" loading="eager">
-            <img src="Imagenes/Nube_pixelart_2.png" alt="" class="cloud cloud-2" loading="eager">
-            <img src="Imagenes/Nube_pixelart_2.png" alt="" class="cloud cloud-3" loading="eager">
-        </div>
-
-        <div class="hero-content">
-            <h1 class="hero-title" id="breakable-title"></h1>
-            <p class="hero-subtitle">Game Designer / Developer</p>
-            <div class="hero-accent"></div>
-        </div>
-
-        <!-- SELECTOR DE PERSONAJES -->
-        <div id="character-selector">
-            <div class="character-option" data-char="1"></div>
-            <div class="character-option" data-char="2"></div>
-            <div class="character-option" data-char="3"></div>
-            <div class="character-option" data-char="4"></div>
-        </div>
-
-        <!-- CONTENEDOR DEL JUGADOR -->
-        <div id="player-container"></div>
-
-        <div class="ground-8bit" aria-hidden="true"></div>
-    </header>
-
-    <main>
-
-        <!-- Sobre Mí -->
-        <section id="about" class="section about-section reveal reveal-left">
-            <div class="section-container">
-                <h2 class="section-title"><span class="title-accent" aria-hidden="true">→</span> SOBRE MÍ</h2>
-
-                <div class="about-content">
-
-                    <article class="about-text">
-                        <p>Soy un apasionado desarrollador y diseñador de videojuegos con experiencia en crear experiencias inmersivas y emocionantes. Mi trayectoria combina habilidades técnicas sólidas con un ojo artístico para el diseño visual.</p>
-                        <p>Cada proyecto que realizo es una oportunidad para innovar, experimentar con nuevas tecnologías y crear algo que realmente impacte a los jugadores.</p>
-                    </article>
-
-                    <div class="about-stats">
-                        <div class="stat">
-                            <span class="stat-number">4+</span>
-                            <span class="stat-label">Años Experiencia</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">6+</span>
-                            <span class="stat-label">Proyectos</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">8</span>
-                            <span class="stat-label">Premios</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+      <main id="top">
+        <!-- Hero: primera impresión, propuesta profesional e imagen principal. -->
+        <section class="hero-section">
+          <div class="hero-copy">
+            <p class="eyebrow">Diseñador y desarrollador de videojuegos</p>
+            <h1>
+              Diseñar es<br /><em>entender</em><br />más alla de lo que se ve.
+            </h1>
+            <p class="hero-lede">
+              Soy Pablo Menéndez-Morán. Me gusta desmontar una idea, probarla
+              cuanto antes y descubrir qué merece quedarse cuando el jugador la
+              tiene delante.
+            </p>
+            <a class="button button-primary" href="#projects"
+              >Ver mis proyectos →</a
+            >
+            <span class="hero-scroll-cue" aria-hidden="true">Explora el proceso ↓</span>
+          </div>
+          <div
+            class="hero-visual"
+            role="img"
+            aria-label="Escritorio de diseño de videojuegos"
+          >
+            <img
+              class="hero-image"
+              src="Imagenes/Juegos/Bugged Out/Presentacion MIG.gif"
+              alt="Escritorio editorial de diseño de videojuegos"
+            />
+          </div>
         </section>
 
-        <!-- Habilidades -->
-        <section id="skills" class="section skills-section reveal reveal-scale">
-            <div class="section-container">
-                <h2 class="section-title"><span class="title-accent" aria-hidden="true">→</span> HABILIDADES</h2>
-
-                <div class="skills-grid">
-                    <article class="skill-column">
-                        <h3 class="skill-title">ARTE</h3>
-                        <ul class="skill-list">
-                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">🎨</span><span>Concept Art</span></li>
-                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">🖼️</span><span>Ilustración Digital</span></li>
-                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">🌈</span><span>Color & Composición</span></li>
-                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">✨</span><span>Efectos Visuales</span></li>
-                        </ul>
-                    </article>
-
-                    <article class="skill-column">
-                        <h3 class="skill-title">DISEÑO</h3>
-                        <ul class="skill-list">
-                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">🎮</span><span>Game Design</span></li>
-                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">🧩</span><span>Mecánicas de Juego</span></li>
-                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">📐</span><span>UI/UX Design</span></li>
-                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">🎭</span><span>Narrativa</span></li>
-                        </ul>
-                    </article>
-
-                    <article class="skill-column">
-                        <h3 class="skill-title">PROGRAMACIÓN</h3>
-                        <ul class="skill-list">
-                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">⚙️</span><span>C# & Unity</span></li>
-                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">🚀</span><span>Unreal Engine</span></li>
-                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">🔧</span><span>Scripting</span></li>
-                            <li class="skill-item"><span class="skill-icon" aria-hidden="true">🌐</span><span>Web Development</span></li>
-                        </ul>
-                    </article>
-                </div>
+        <!-- Sobre mí: presentación personal y forma de trabajo. -->
+        <!-- Sobre mí: presentación personal y explicación de la forma de trabajo. -->
+        <section class="section about-section" id="about">
+          <div class="section-heading">
+            <div>
+              <!-- Sustituye esta imagen por tu foto personal manteniendo la ruta relativa. -->
+              <figure class="about-profile-photo about-profile-photo-heading">
+                <img src="Imagenes/Otras cosas/Foto mi cv.jpeg" alt="Retrato de Pablo Menéndez-Morán" />
+              </figure>
+              <h2>Diseñar es<br /><em>hacer preguntas.</em></h2>
             </div>
+            <div class="section-intro">
+              <p class="eyebrow">Sobre mí</p>
+              <p>
+                Me muevo entre el diseño, el arte y el código porque muchas
+                veces una buena idea no se entiende hasta que se puede tocar.
+                Ahí es donde más disfruto: convirtiendo preguntas en prototipos.
+              </p>
+              <p>
+                Todavía estoy construyendo mi camino, así que intento no
+                enamorarme demasiado de la primera versión. Prefiero aprender,
+                iterar y trabajar con gente que quiera hacer juegos con una voz
+                propia.
+              </p>
+              <div class="about-stats-panel">
+                <div class="about-stats-wrap">
+                  <p class="eyebrow">Lo que he construido</p>
+                  <div id="about-stats" class="about-stats" aria-live="polite"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about-callout">
+            <p>
+              <strong>Mi forma de trabajar:</strong> empiezo por la pregunta,
+              construyo algo pequeño, lo pongo en manos de alguien y escucho lo
+              que el juego me devuelve.
+            </p>
+          </div>
         </section>
 
-        <!-- Experiencia -->
-        <section id="experience" class="section experience-section reveal reveal-right">
-            <div class="section-container">
-                <h2 class="section-title"><span class="title-accent" aria-hidden="true">→</span> EXPERIENCIA LABORAL</h2>
-
-                <div class="timeline">
-
-                    <div class="timeline-item" data-experience="1" tabindex="0">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3 class="timeline-title">Senior Game Developer</h3>
-                            <p class="timeline-company">Tech Games Studio</p>
-                            <p class="timeline-period">2022 - Presente</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item" data-experience="2" tabindex="0">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3 class="timeline-title">Game Programmer</h3>
-                            <p class="timeline-company">Indie Creative Labs</p>
-                            <p class="timeline-period">2020 - 2022</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item" data-experience="3" tabindex="0">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3 class="timeline-title">Junior Developer</h3>
-                            <p class="timeline-company">Digital Games Co.</p>
-                            <p class="timeline-period">2019 - 2020</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item" data-experience="4" tabindex="0">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3 class="timeline-title">Freelance Developer</h3>
-                            <p class="timeline-company">Proyectos Independientes</p>
-                            <p class="timeline-period">2018 - 2019</p>
-                        </div>
-                    </div>
-
-                </div>
-
+        <!-- Habilidades: JavaScript inserta aquí las categorías y subhabilidades. -->
+        <!-- Habilidades: script.js genera aquí las categorías, imágenes y subhabilidades. -->
+        <section class="section skills-section" id="skills">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Habilidades</p>
+              <h2>Lo que sé<br /><em>hacer.</em></h2>
             </div>
+            <p class="section-intro">
+              No separo estas áreas en compartimentos estancos. Diseño es mi
+              punto de partida; el resto me ayuda a probar y comunicar mejor las
+              ideas.
+            </p>
+          </div>
+          <!-- JavaScript inserta aquí las tarjetas de Diseño, IA, Arte y Programación. -->
+          <div class="skills-list" id="skills-list"></div>
+          <!-- Reserva para herramientas adicionales si se amplía la estructura en el futuro. -->
+          <div class="skill-tools" id="skill-tools"></div>
         </section>
 
-        <!-- Premios -->
-        <section id="awards" class="section awards-section reveal reveal-rotate">
-
-            <div class="section-container">
-                <h2 class="section-title"><span class="title-accent" aria-hidden="true">→</span> PREMIOS & RECONOCIMIENTOS</h2>
-
-                <div class="carousel-container">
-                    <button class="carousel-btn carousel-btn-prev" aria-label="Premio anterior">❮</button>
-
-                    <div class="carousel-wrapper">
-                        <div class="carousel-track">
-
-                            <div class="award-item" data-award="1">
-                                <div class="award-image"><img src="Imagenes/premios/Diploma_ganador_Ferrovial.jpg" alt="Best Game Design"></div>
-                                <h3 class="award-title">Best Game Design</h3>
-                            </div>
-
-                            <div class="award-item" data-award="2">
-                                <div class="award-image"><img src="Imagenes/premios/Hack_for_good.jpeg" alt="Innovation Award"></div>
-                                <h3 class="award-title">Innovation Award</h3>
-                            </div>
-
-                            <div class="award-item" data-award="3">
-                                <div class="award-image"><img src="Imagenes/premios/HackSTEM_Certificate_First_Place.png" alt="Best Art Direction"></div>
-                                <h3 class="award-title">Best Art Direction</h3>
-                            </div>
-
-                            <div class="award-item" data-award="4">
-                                <div class="award-image"><img src="Imagenes/premios/Ideathon-Amadeus-premios-82-scaled-1.jpg" alt="Player's Choice"></div>
-                                <h3 class="award-title">Player's Choice</h3>
-                            </div>
-
-                            <div class="award-item" data-award="5">
-                                <div class="award-image"><img src="Imagenes/premios/Oppo_imagine_if.jpeg" alt="Best Innovation"></div>
-                                <h3 class="award-title">Best Innovation</h3>
-                            </div>
-
-                            <div class="award-item" data-award="6">
-                                <div class="award-image"><img src="Imagenes/premios/Madrid_game_jam.jpg" alt="Game Jam Winner"></div>
-                                <h3 class="award-title">Game Jam Winner</h3>
-                            </div>
-
-                            <div class="award-item" data-award="7">
-                                <div class="award-image"><img src="Imagenes/premios/Indesiahack.png" alt="Photo Award"></div>
-                                <h3 class="award-title">Photo</h3>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <button class="carousel-btn carousel-btn-next" aria-label="Siguiente premio">❯</button>
-                </div>
-
-                <div class="carousel-indicators" id="carouselIndicators"></div>
-
+        <!-- Proyectos: JavaScript inserta aquí las tarjetas y gestiona sus fichas. -->
+        <!-- Proyectos: las tarjetas se generan desde script.js y abren fichas completas. -->
+        <section class="section projects-section" id="projects">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Proyectos</p>
+              <h2>Ideas hechas<br /><em>jugables.</em></h2>
             </div>
+            <p class="section-intro">
+              Aquí quiero enseñar cómo pienso, no solo qué he terminado. Cada
+              ficha está preparada para contar una idea, sus pruebas, sus
+              problemas y lo que aprendí por el camino.
+            </p>
+          </div>
+          <div class="projects-list" id="projects-list"></div>
+          <p class="content-note">
+            Estos espacios esperan tus proyectos reales. La idea es enseñar el
+            proceso completo, no rellenar la página con trabajos inventados.
+          </p>
         </section>
 
-        <!-- Juegos -->
-        <section id="games" class="section games-section reveal reveal-up">
-            <div class="section-container">
-
-                <h2 class="section-title"><span class="title-accent" aria-hidden="true">→</span> MIS JUEGOS</h2>
-
-                <div class="shelf-container">
-                    <div class="game-shelf">
-
-                        <article class="game-item" data-game="1" tabindex="0">
-                            <div class="game-cover"><img class="game-cover-image" src="https://via.placeholder.com/400x300/FF6B6B/FFFFFF?text=CYBER+QUEST" alt="Cyber Quest"></div>
-                            <div class="game-label">Cyber Quest</div>
-                        </article>
-
-                        <article class="game-item" data-game="2" tabindex="0">
-                            <div class="game-cover"><img class="game-cover-image" src="https://via.placeholder.com/400x300/4ECDC4/FFFFFF?text=PIXEL+WARS" alt="Pixel Wars"></div>
-                            <div class="game-label">Pixel Wars</div>
-                        </article>
-
-                        <article class="game-item" data-game="3" tabindex="0">
-                            <div class="game-cover"><img class="game-cover-image" src="https://via.placeholder.com/400x300/FFE66D/FFFFFF?text=NEON+RUSH" alt="Neon Rush"></div>
-                            <div class="game-label">Neon Rush</div>
-                        </article>
-
-                        <article class="game-item" data-game="4" tabindex="0">
-                            <div class="game-cover"><img class="game-cover-image" src="https://via.placeholder.com/400x300/95E1D3/FFFFFF?text=VOID+ECHO" alt="Void Echo"></div>
-                            <div class="game-label">Void Echo</div>
-                        </article>
-
-                    </div>
-                </div>
-
+        <!-- Investigación: biblioteca unificada de documentos, experimentos y análisis. -->
+        <section class="section documents-section archive-section" id="documents">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Investigación</p>
+              <h2>Experimentos<br /><em>y documentos.</em></h2>
             </div>
+            <div class="section-intro">
+              <p>Una biblioteca de GDDs, análisis y documentos de proceso que explica cómo paso de una intuición a una experiencia jugable.</p>
+              <div class="documents-stats" aria-label="Resumen de documentación">
+                <span><b id="documents-count">00</b><small>piezas</small></span>
+                <span><b>ES / EN</b><small>idiomas</small></span>
+                <span><b>01</b><small>archivo vivo</small></span>
+              </div>
+              <p class="documents-definition"><strong>Archivo vivo:</strong> una colección que puede crecer y actualizarse con cada nuevo proyecto, prueba o documento.</p>
+            </div>
+          </div>
+          <div class="documents-toolbar" aria-label="Filtrar documentación">
+            <span class="documents-toolbar-label">Explorar archivo</span>
+            <div class="document-filters" role="group" aria-label="Categorías de documentación">
+              <button class="document-filter is-active" data-document-filter="all">Todo</button>
+              <button class="document-filter" data-document-filter="gameplay">Gameplay</button>
+              <button class="document-filter" data-document-filter="systems">Sistemas</button>
+              <button class="document-filter" data-document-filter="ux">UX / UI</button>
+              <button class="document-filter" data-document-filter="research">Experimentos</button>
+            </div>
+          </div>
+          <div class="documents-grid" id="documents-grid"></div>
+          <p class="content-note documents-note">Cada archivo puede crecer con nuevas pruebas, prototipos, análisis y documentos de proceso.</p>
         </section>
 
-    </main>
-
-    <!-- Contenedor de Modales -->
-    <aside id="modals-container">
-
-        <!-- Modal Experiencia -->
-        <div id="experienceModal" class="modal" aria-hidden="true" role="dialog">
-            <div class="modal-content">
-                <button class="modal-close" id="closeExperienceModal" aria-label="Cerrar modal">×</button>
-                <div class="modal-body">
-                    <div class="modal-experience-image"><img id="modalExpImage" src="" alt="Imagen"></div>
-                    <div class="modal-experience-info">
-                        <h2 id="modalExpTitle"></h2>
-                        <p class="modal-company" id="modalExpCompany"></p>
-                        <p class="modal-period" id="modalExpPeriod"></p>
-
-                        <div class="modal-description">
-                            <h3>Descripción</h3>
-                            <p id="modalExpDescription"></p>
-                        </div>
-
-                        <div class="modal-responsibilities">
-                            <h3>Responsabilidades</h3>
-                            <ul id="modalExpResponsibilities"></ul>
-                        </div>
-                    </div>
-                </div>
+        <!-- Reconocimientos: las tarjetas y sus modales se generan desde script.js. -->
+        <!-- Reconocimientos: tarjetas con imagen, contexto y enlace externo. -->
+        <section class="section awards-section" id="awards">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Reconocimientos</p>
+              <h2>Trabajo que<br /><em>deja señal.</em></h2>
             </div>
-        </div>
+            <p class="section-intro">
+              Son momentos y proyectos que me han dado una excusa para seguir
+              haciendo cosas. Pulsa una tarjeta para conocer el contexto y ver
+              la referencia externa.
+            </p>
+          </div>
+          <div class="awards-grid" id="awards-grid"></div>
+        </section>
 
-        <!-- Modal Premios -->
-        <div id="awardModal" class="modal" aria-hidden="true" role="dialog">
-            <div class="modal-content">
-                <button class="modal-close" id="closeAwardModal" aria-label="Cerrar modal">×</button>
-                <div class="modal-body">
-                    <div class="modal-award-image"><img id="modalAwardImage" src="" alt="Premio"></div>
-
-                    <div class="modal-award-info">
-                        <h2 id="modalAwardTitle"></h2>
-                        <p id="modalAwardDescription"></p>
-
-                        <div class="modal-award-details">
-                            <div class="detail"><span class="detail-label">Evento:</span><span id="modalAwardEvent"></span></div>
-                            <div class="detail"><span class="detail-label">Año:</span><span id="modalAwardYear"></span></div>
-                        </div>
-
-                    </div>
-                </div>
+        <!-- Experiencia y formación: contenido estático fácil de editar directamente. -->
+        <!-- Experiencia: formación y prácticas que se editan directamente en este HTML. -->
+        <section class="section experience-section" id="experience">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Experiencia</p>
+              <h2>Aprender<br /><em>haciendo.</em></h2>
             </div>
-        </div>
+            <p class="section-intro">
+              No es una lista de puestos perfectos: son los lugares y
+              aprendizajes que han ido dando forma a mi manera de diseñar.
+            </p>
+          </div>
+          <!-- JavaScript genera aquí las experiencias editables con imagen y modal. -->
+          <div class="experience-list" id="experience-list"></div>
+        </section>
 
-        <!-- Modal Juegos -->
-        <div id="gameModal" class="modal" aria-hidden="true" role="dialog">
-            <div class="modal-content">
-                <button class="modal-close" id="closeModal" aria-label="Cerrar modal">×</button>
-                <div class="modal-body">
-
-                    <div class="modal-game-info">
-                        <h2 id="modalGameTitle"></h2>
-                        <p id="modalGameDescription"></p>
-
-                        <div class="modal-game-details">
-                            <div class="detail"><span class="detail-label">Plataforma:</span><span id="modalGamePlatform"></span></div>
-                            <div class="detail"><span class="detail-label">Año:</span><span id="modalGameYear"></span></div>
-                            <div class="detail"><span class="detail-label">Motor:</span><span id="modalGameEngine"></span></div>
-                        </div>
-
-                        <div class="modal-links">
-                            <a id="modalGameLink" href="#" target="_blank" class="btn-link">Ver Juego</a>
-                            <a id="modalGameGithub" href="#" target="_blank" class="btn-link">GitHub</a>
-                        </div>
-
-                    </div>
-                </div>
+        <!-- Contacto: llamada a la acción y enlaces profesionales. -->
+        <!-- Contacto: llamada a la acción, email y futuros enlaces profesionales. -->
+        <section class="contact-section" id="contact">
+          <div class="contact-inner">
+            <p class="eyebrow">Contacto</p>
+            <h2>¿Hablamos de<br /><em>un juego?</em></h2>
+            <p>
+              Si tienes una idea, un prototipo a medias o un problema de diseño
+              que quieras mirar desde otro ángulo, escríbeme. Me gusta hablar de
+              juegos antes de que estén resueltos.
+            </p>
+            <a
+              class="button button-dark"
+              href="mailto:contacto@pablomenendezmoran.com"
+              >Escribir un mensaje →</a
+            >
+          <div class="contact-links d-flex flex-wrap">
+              <a href="mailto:contacto@pablomenendezmoran.com">✉ Email</a
+              ><span class="contact-pending"
+                >GitHub <small>pendiente</small></span
+              ><span class="contact-pending">CV <small>pendiente</small></span>
             </div>
-        </div>
+          </div>
+        </section>
+      </main>
 
-    </aside>
+      <!-- Pie de página. -->
+      <!-- Pie de página: firma, crédito y enlace para volver al inicio. -->
+      <footer class="footer">
+        <span>© 2026 Pablo Menéndez-Morán</span
+        ><span
+          >Diseñado, desarrollado y revisado muchas veces con curiosidad.</span
+        ><a href="#top">Volver arriba ↑</a>
+      </footer>
 
-    <footer class="footer">
-        <p>© 2024 Pablo Menéndez-Morán. Diseñado y desarrollado con ❤️</p>
-    </footer>
-
-    <script src="script.js"></script>
-
-</body>
+      <!-- Modal reutilizable: JavaScript cambia su contenido según la tarjeta pulsada. -->
+      <!-- Modal reutilizable: script.js coloca aquí habilidades, proyectos y premios. -->
+      <div class="modal-backdrop" id="modal-backdrop" hidden>
+        <section
+          class="portfolio-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title"
+        >
+          <button
+            class="modal-close"
+            id="modal-close"
+            aria-label="Cerrar ventana"
+          >
+            ×
+          </button>
+          <div id="modal-content"></div>
+        </section>
+      </div>
+    </div>
+    <!-- Carga única de la lógica: datos editables, idioma, navegación y modales. -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYJwRVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js?v=18"></script>
+  </body>
 </html>

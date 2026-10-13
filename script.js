@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (isProjectPage) {
     applyStaticLanguage();
     renderProjectPage();
-    setupRevealAnimations();
   } else {
     renderSkills();
     renderProjects();
@@ -1941,7 +1940,6 @@ function setupDocumentFilters() {
       .querySelectorAll("[data-document-filter]")
       .forEach((item) => item.classList.toggle("is-active", item === button));
     renderDocuments();
-    setupRevealAnimations();
   });
 }
 
@@ -2034,7 +2032,6 @@ function setupScrollAnimations() {
     animateStatsCounter();
   }
   if (!("IntersectionObserver" in window)) return;
-  setupRevealAnimations();
 
   const experienceWrappers = document.querySelectorAll(".experience-card-wrapper");
   if (experienceWrappers.length > 0) {
@@ -2052,64 +2049,6 @@ function setupScrollAnimations() {
     );
     experienceWrappers.forEach((wrapper) => expObserver.observe(wrapper));
   }
-}
-
-// Grupos de elementos que aparecen al entrar en pantalla: [selector, variante, escalonado].
-const revealGroups = [
-  [".section-heading > :first-child", "up", false],
-  [".section-heading > .section-intro", "fade", false],
-  [".about-callout, .content-note, .documents-toolbar", "up", false],
-  [
-    "#skills-list > *, #projects-list > *, #documents-grid > *, #awards-grid > *",
-    "card",
-    true,
-  ],
-  [".contact-inner > *", "up", true],
-  [".project-back, .project-study-hero > *", "up", true],
-  [
-    ".project-study-heading, .project-gallery-intro, .project-summary-layout > *",
-    "up",
-    true,
-  ],
-  [".project-gallery-grid > *", "card", true],
-];
-
-// Marca y observa los elementos para animarlos una sola vez al hacer scroll.
-function setupRevealAnimations(root = document) {
-  if (
-    !("IntersectionObserver" in window) ||
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  )
-    return;
-
-  const observer =
-    setupRevealAnimations.observer ||
-    (setupRevealAnimations.observer = new IntersectionObserver(
-      (entries, currentObserver) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-revealed");
-          currentObserver.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
-    ));
-
-  revealGroups.forEach(([selector, variant, stagger]) => {
-    root.querySelectorAll(selector).forEach((element) => {
-      if (element.classList.contains("reveal")) return;
-      const siblings = stagger
-        ? [...element.parentElement.children].indexOf(element)
-        : 0;
-      element.classList.add("reveal");
-      element.dataset.reveal = variant;
-      element.style.setProperty(
-        "--reveal-delay",
-        `${Math.min(siblings, 6) * 90 + (variant === "fade" ? 140 : 0)}ms`,
-      );
-      observer.observe(element);
-    });
-  });
 }
 
 // Rellena la línea central según la parte de la timeline que ya ha recorrido el usuario.
@@ -2491,7 +2430,6 @@ onAll("[data-language]", "click", (event) => {
   if (document.body.dataset.page === "project") {
     applyStaticLanguage();
     renderProjectPage();
-    setupRevealAnimations();
   } else {
     renderSkills();
     renderProjects();

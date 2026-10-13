@@ -1,8 +1,8 @@
 <!doctype html>
-<!-- Documento principal de la versión independiente: solo necesita este HTML, styles.css y script.js. -->
+<!-- Documento principal del portfolio: idioma, metadatos y recursos compartidos. -->
 <html lang="es">
   <head>
-    <!-- Metadatos básicos, descripción para buscadores y hoja de estilos principal. -->
+    <!-- Metadatos del sitio y conexión con la hoja de estilos. -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
@@ -10,49 +10,47 @@
       content="Portfolio de Pablo Menéndez-Morán, diseñador y desarrollador de videojuegos."
     />
     <title>Pablo · Game Design / Dev</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="styles.css?v=18" />
+    <link rel="stylesheet" href="styles.css?v=29" />
   </head>
   <body>
-    <!-- Contenedor general que mantiene el fondo y evita desbordamientos visuales. -->
     <div class="site-shell">
-      <!-- Barra que indica visualmente el avance de lectura de la página. -->
-      <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
-      <!-- Navegación principal: permanece visible durante el scroll y se adapta a móvil. -->
+      <div class="scroll-progress" aria-hidden="true"></div>
+
+      <!-- Cabecera compartida con marca, selección de idioma y navegación. -->
       <header class="topbar">
-        <!-- Marca: cambia aquí el nombre corto y la etiqueta profesional del encabezado. -->
         <a class="brand" href="#top" aria-label="Ir al inicio">
-          <!-- Cambia solo esta ruta por tu GIF. El contenedor funciona como máscara circular. -->
           <span class="brand-character-mask">
-            <img class="brand-character" 
-            src="Imagenes/personaje-estatico.png" 
-            data-gif="Imagenes/personaje.gif" alt="Personaje de Pablo"/>
+            <img
+              class="brand-character"
+              src="Imagenes/personaje-estatico.png"
+              data-gif="Imagenes/personaje.gif"
+              alt="Personaje de Pablo"
+            />
           </span>
 
           <span><b>Pablo</b><small>GAME DESIGN / DEV</small></span>
         </a>
 
-        <!-- Botón que abre y cierra la navegación en pantallas pequeñas. -->
         <button
+          type="button"
           class="mobile-toggle"
           aria-expanded="false"
+          aria-controls="primary-navigation"
           aria-label="Abrir navegación"
         >
           ☰
         </button>
 
-        <!-- Selector bilingüe: script.js actualiza todo el contenido al pulsar ES o EN. -->
-        <div class="language-switcher" aria-label="Cambiar idioma">
-          <button class="is-active" data-language="es">ES</button><span>/</span
-          ><button data-language="en">EN</button>
+        <div class="language-switcher" role="group" aria-label="Cambiar idioma">
+          <button type="button" class="is-active" data-language="es">ES</button
+          ><span>/</span><button type="button" data-language="en">EN</button>
         </div>
-        <!-- Enlaces de navegación: apuntan a las secciones mediante anclas y scroll suave. -->
-        <nav class="main-nav" aria-label="Navegación principal">
+
+        <nav
+          class="main-nav"
+          id="primary-navigation"
+          aria-label="Navegación principal"
+        >
           <a href="#about">Sobre mí</a>
           <a href="#skills">Habilidades</a>
           <a href="#projects">Proyectos</a>
@@ -64,12 +62,12 @@
       </header>
 
       <main id="top">
-        <!-- Hero: primera impresión, propuesta profesional e imagen principal. -->
+        <!-- Portada: presentación, propuesta profesional y acceso a proyectos. -->
         <section class="hero-section">
           <div class="hero-copy">
             <p class="eyebrow">Diseñador y desarrollador de videojuegos</p>
             <h1>
-              Diseñar es<br /><em>entender</em><br />más alla de lo que se ve.
+              Diseñar es<br /><em>entender</em><br />más allá de lo que se ve.
             </h1>
             <p class="hero-lede">
               Soy Pablo Menéndez-Morán. Me gusta desmontar una idea, probarla
@@ -79,29 +77,26 @@
             <a class="button button-primary" href="#projects"
               >Ver mis proyectos →</a
             >
-            <span class="hero-scroll-cue" aria-hidden="true">Explora el proceso ↓</span>
+            <span class="hero-scroll-cue" aria-hidden="true"
+              >Explora el proceso ↓</span
+            >
           </div>
           <div
             class="hero-visual"
             role="img"
             aria-label="Escritorio de diseño de videojuegos"
-          >
-            <img
-              class="hero-image"
-              src="Imagenes/Juegos/Bugged Out/Presentacion MIG.gif"
-              alt="Escritorio editorial de diseño de videojuegos"
-            />
-          </div>
+          ></div>
         </section>
 
-        <!-- Sobre mí: presentación personal y forma de trabajo. -->
-        <!-- Sobre mí: presentación personal y explicación de la forma de trabajo. -->
+        <!-- Perfil: presentación personal, estadísticas y método de trabajo. -->
         <section class="section about-section" id="about">
           <div class="section-heading">
             <div>
-              <!-- Sustituye esta imagen por tu foto personal manteniendo la ruta relativa. -->
               <figure class="about-profile-photo about-profile-photo-heading">
-                <img src="Imagenes/Otras cosas/Foto mi cv.jpeg" alt="Retrato de Pablo Menéndez-Morán" />
+                <img
+                  src="/manus-storage/skill-art_a485fde1.png"
+                  alt="Retrato provisional de Pablo"
+                />
               </figure>
               <h2>Diseñar es<br /><em>hacer preguntas.</em></h2>
             </div>
@@ -121,7 +116,11 @@
               <div class="about-stats-panel">
                 <div class="about-stats-wrap">
                   <p class="eyebrow">Lo que he construido</p>
-                  <div id="about-stats" class="about-stats" aria-live="polite"></div>
+                  <div
+                    id="about-stats"
+                    class="about-stats"
+                    aria-live="polite"
+                  ></div>
                 </div>
               </div>
             </div>
@@ -135,8 +134,7 @@
           </div>
         </section>
 
-        <!-- Habilidades: JavaScript inserta aquí las categorías y subhabilidades. -->
-        <!-- Habilidades: script.js genera aquí las categorías, imágenes y subhabilidades. -->
+        <!-- Habilidades: categorías y herramientas generadas desde JavaScript. -->
         <section class="section skills-section" id="skills">
           <div class="section-heading">
             <div>
@@ -149,14 +147,11 @@
               ideas.
             </p>
           </div>
-          <!-- JavaScript inserta aquí las tarjetas de Diseño, IA, Arte y Programación. -->
+
           <div class="skills-list" id="skills-list"></div>
-          <!-- Reserva para herramientas adicionales si se amplía la estructura en el futuro. -->
-          <div class="skill-tools" id="skill-tools"></div>
         </section>
 
-        <!-- Proyectos: JavaScript inserta aquí las tarjetas y gestiona sus fichas. -->
-        <!-- Proyectos: las tarjetas se generan desde script.js y abren fichas completas. -->
+        <!-- Proyectos: tarjetas y fichas de estudio generadas desde los datos. -->
         <section class="section projects-section" id="projects">
           <div class="section-heading">
             <div>
@@ -176,39 +171,87 @@
           </p>
         </section>
 
-        <!-- Investigación: biblioteca unificada de documentos, experimentos y análisis. -->
-        <section class="section documents-section archive-section" id="documents">
+        <!-- Investigación: biblioteca de documentos con filtros por categoría. -->
+        <section
+          class="section documents-section archive-section"
+          id="documents"
+        >
           <div class="section-heading">
             <div>
               <p class="eyebrow">Investigación</p>
               <h2>Experimentos<br /><em>y documentos.</em></h2>
             </div>
             <div class="section-intro">
-              <p>Una biblioteca de GDDs, análisis y documentos de proceso que explica cómo paso de una intuición a una experiencia jugable.</p>
-              <div class="documents-stats" aria-label="Resumen de documentación">
+              <p>
+                Una biblioteca de GDDs, análisis y documentos de proceso que
+                explica cómo paso de una intuición a una experiencia jugable.
+              </p>
+              <div
+                class="documents-stats"
+                aria-label="Resumen de documentación"
+              >
                 <span><b id="documents-count">00</b><small>piezas</small></span>
                 <span><b>ES / EN</b><small>idiomas</small></span>
                 <span><b>01</b><small>archivo vivo</small></span>
               </div>
-              <p class="documents-definition"><strong>Archivo vivo:</strong> una colección que puede crecer y actualizarse con cada nuevo proyecto, prueba o documento.</p>
+              <p class="documents-definition">
+                <strong>Archivo vivo:</strong> una colección que puede crecer y
+                actualizarse con cada nuevo proyecto, prueba o documento.
+              </p>
             </div>
           </div>
           <div class="documents-toolbar" aria-label="Filtrar documentación">
             <span class="documents-toolbar-label">Explorar archivo</span>
-            <div class="document-filters" role="group" aria-label="Categorías de documentación">
-              <button class="document-filter is-active" data-document-filter="all">Todo</button>
-              <button class="document-filter" data-document-filter="gameplay">Gameplay</button>
-              <button class="document-filter" data-document-filter="systems">Sistemas</button>
-              <button class="document-filter" data-document-filter="ux">UX / UI</button>
-              <button class="document-filter" data-document-filter="research">Experimentos</button>
+            <div
+              class="document-filters"
+              role="group"
+              aria-label="Categorías de documentación"
+            >
+              <button
+                type="button"
+                class="document-filter is-active"
+                data-document-filter="all"
+              >
+                Todo
+              </button>
+              <button
+                type="button"
+                class="document-filter"
+                data-document-filter="gameplay"
+              >
+                Gameplay
+              </button>
+              <button
+                type="button"
+                class="document-filter"
+                data-document-filter="systems"
+              >
+                Sistemas
+              </button>
+              <button
+                type="button"
+                class="document-filter"
+                data-document-filter="ux"
+              >
+                UX / UI
+              </button>
+              <button
+                type="button"
+                class="document-filter"
+                data-document-filter="research"
+              >
+                Experimentos
+              </button>
             </div>
           </div>
           <div class="documents-grid" id="documents-grid"></div>
-          <p class="content-note documents-note">Cada archivo puede crecer con nuevas pruebas, prototipos, análisis y documentos de proceso.</p>
+          <p class="content-note documents-note">
+            Cada archivo puede crecer con nuevas pruebas, prototipos, análisis y
+            documentos de proceso.
+          </p>
         </section>
 
-        <!-- Reconocimientos: las tarjetas y sus modales se generan desde script.js. -->
-        <!-- Reconocimientos: tarjetas con imagen, contexto y enlace externo. -->
+        <!-- Reconocimientos: tarjetas y referencias externas generadas por JavaScript. -->
         <section class="section awards-section" id="awards">
           <div class="section-heading">
             <div>
@@ -224,8 +267,7 @@
           <div class="awards-grid" id="awards-grid"></div>
         </section>
 
-        <!-- Experiencia y formación: contenido estático fácil de editar directamente. -->
-        <!-- Experiencia: formación y prácticas que se editan directamente en este HTML. -->
+        <!-- Experiencia: formación y trayectoria presentadas como recorrido. -->
         <section class="section experience-section" id="experience">
           <div class="section-heading">
             <div>
@@ -237,12 +279,11 @@
               aprendizajes que han ido dando forma a mi manera de diseñar.
             </p>
           </div>
-          <!-- JavaScript genera aquí las experiencias editables con imagen y modal. -->
+
           <div class="experience-list" id="experience-list"></div>
         </section>
 
-        <!-- Contacto: llamada a la acción y enlaces profesionales. -->
-        <!-- Contacto: llamada a la acción, email y futuros enlaces profesionales. -->
+        <!-- Contacto: correo y enlaces profesionales. -->
         <section class="contact-section" id="contact">
           <div class="contact-inner">
             <p class="eyebrow">Contacto</p>
@@ -257,7 +298,7 @@
               href="mailto:contacto@pablomenendezmoran.com"
               >Escribir un mensaje →</a
             >
-          <div class="contact-links d-flex flex-wrap">
+            <div class="contact-links">
               <a href="mailto:contacto@pablomenendezmoran.com">✉ Email</a
               ><span class="contact-pending"
                 >GitHub <small>pendiente</small></span
@@ -267,8 +308,7 @@
         </section>
       </main>
 
-      <!-- Pie de página. -->
-      <!-- Pie de página: firma, crédito y enlace para volver al inicio. -->
+      <!-- Pie de página y enlace para regresar al inicio. -->
       <footer class="footer">
         <span>© 2026 Pablo Menéndez-Morán</span
         ><span
@@ -276,8 +316,7 @@
         ><a href="#top">Volver arriba ↑</a>
       </footer>
 
-      <!-- Modal reutilizable: JavaScript cambia su contenido según la tarjeta pulsada. -->
-      <!-- Modal reutilizable: script.js coloca aquí habilidades, proyectos y premios. -->
+      <!-- Ventana modal reutilizable para el contenido interactivo. -->
       <div class="modal-backdrop" id="modal-backdrop" hidden>
         <section
           class="portfolio-modal"
@@ -286,6 +325,7 @@
           aria-labelledby="modal-title"
         >
           <button
+            type="button"
             class="modal-close"
             id="modal-close"
             aria-label="Cerrar ventana"
@@ -296,12 +336,8 @@
         </section>
       </div>
     </div>
-    <!-- Carga única de la lógica: datos editables, idioma, navegación y modales. -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYJwRVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
-    <script src="script.js?v=18"></script>
+
+    <!-- Lógica de renderizado, idioma, navegación, filtros y ventanas modales. -->
+    <script src="script.js?v=24"></script>
   </body>
 </html>
